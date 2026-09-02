@@ -2,12 +2,53 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig, type DefaultTheme } from 'vitepress';
-import structure from './data/structure.json';
+import structureJson from './data/structure.json';
 import labels from './data/labels.json';
 
 type Labels = Record<string, Record<string, string>>;
 const L = labels as Labels;
 
+/**
+ * Contrat du manifeste. Il est déclaré ici plutôt que déduit du JSON : l'inférence
+ * fige le type au chargement, si bien qu'une clé ajoutée au fichier passe pour
+ * inexistante tant que le serveur TypeScript de l'éditeur n'a pas redémarré.
+ */
+export interface DocPage {
+  slug: string;
+  legacyId: string;
+  i18n: string;
+  /** Libellé anglais de repli, quand aucune locale ne renseigne le titre. */
+  label?: string;
+  extraContentKeys?: string[];
+}
+
+export interface DocSection {
+  id: string;
+  icon: string;
+  i18nLabel: string;
+  label?: string;
+  pages: DocPage[];
+}
+
+export interface DocStructure {
+  product: {
+    id: string;
+    name: string;
+    shortName: string;
+    version: string;
+    logo: string;
+    siteUrl: string;
+    /** `{lang}` est remplacé par la locale courante — voir siteLink(). */
+    links: Record<'website' | 'download' | 'product' | 'discord' | 'github' | 'engine' | 'demo', string>;
+  };
+  defaultLang: string;
+  langs: { code: string; label: string; dir: 'ltr' | 'rtl' }[];
+  sections: DocSection[];
+}
+
+// Via `unknown` : le JSON est une donnée externe dont le contrat est DocStructure,
+// et non le type que TypeScript a déduit du fichier au moment où il l'a lu.
+const structure = structureJson as unknown as DocStructure;
 const { product, langs, sections } = structure;
 const DOCS_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
