@@ -115,6 +115,13 @@
     font-size: 32px;
     line-height: 1.2;
   }
+  /* Deux lignes réservées : les titres traduits vont de une à trois lignes, et
+     sans cette réserve les boutons et les cartes sautent d'une langue à l'autre.
+     `em` sert de repli là où l'unité `lh` n'est pas connue. */
+  .VPHero .text {
+    min-height: 2.4em;
+    min-height: 2lh;
+  }
   .VPHero .tagline {
     font-size: 18px;
     line-height: 1.6;

@@ -53,4 +53,19 @@ features:
     title: "本地化"
     details: "LSDE 支持 ISO 639-1 代码或 ISO 639-1 - ISO 3166-1 组合。点击此处了解更多规格详情。"
     link: /zh/interface/localization-manager
+  - icon:
+      src: /icons/rendering.svg
+    title: "渲染"
+    details: "以 JRPG 游戏为例，对话引擎需要捕获所有参数组，例如 {{number:number:number}}。"
+    link: /zh/features/rendering
+  - icon:
+      src: /icons/importexport.svg
+    title: "导入/导出"
+    details: "如果您使用的是 i18next 以外的自定义引擎，LSDE 允许您配置自己的 middleware。这样，您就可以将数据导入为 LSDE 格式，反之亦然，将 LSDE 格式导出为您自己的结构。"
+    link: /zh/features/import-export
+  - icon:
+      src: /icons/runtime.svg
+    title: "Runtime (LSDEDE)"
+    details: "它支持 TypeScript、C#、C++ 和 GDScript，可原生集成到任何游戏引擎或框架中。"
+    link: /zh/engines/runtime
 ---

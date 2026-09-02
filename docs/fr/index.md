@@ -53,4 +53,19 @@ features:
     title: "Diagnostic"
     details: "Un jeton perdu en coréen se paie en patch day one. Les incohérences entre vos langues remontent en continu, avant que votre build…"
     link: /fr/interface/localization-manager
+  - icon:
+      src: /icons/rendering.svg
+    title: "Rendering"
+    details: "LSDE offre un moteur de rendu de texte très avancé qui permet de personnaliser en temps réel le rendu de segments de texte."
+    link: /fr/features/rendering
+  - icon:
+      src: /icons/importexport.svg
+    title: "Import/Export"
+    details: "Si vous travaillez avec un moteur personnalisé autre que i18next, LSDE vous permet de configurer votre propre middleware."
+    link: /fr/features/import-export
+  - icon:
+      src: /icons/runtime.svg
+    title: "Runtime (LSDEDE)"
+    details: "Le moteur d'exécution multi-runtime charge et exécute les blueprints exportés depuis l'éditeur."
+    link: /fr/engines/runtime
 ---

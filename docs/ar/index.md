@@ -53,4 +53,19 @@ features:
     title: "توطين"
     details: "تتيح لك هذه الوحدة الإلزامية تكوين اللغات ومساحات الأسماء لمشروعك."
     link: /ar/interface/localization-manager
+  - icon:
+      src: /icons/rendering.svg
+    title: "العرض"
+    details: "يقدم LSDE محرك عرض نصوص متقدمًا للغاية يسمح بتخصيص عرض مقاطع النص في الوقت الفعلي."
+    link: /ar/features/rendering
+  - icon:
+      src: /icons/importexport.svg
+    title: "استيراد/تصدير"
+    details: "إذا كنت تعمل مع محرك مخصص بخلاف i18next، فإن LSDE يتيح لك تهيئة الـ middleware الخاص بك."
+    link: /ar/features/import-export
+  - icon:
+      src: /icons/runtime.svg
+    title: "Runtime (LSDEDE)"
+    details: "يقوم محرك التنفيذ متعدد الرنتايم (multi-runtime) بتحميل وتشغيل المخططات (blueprints) المصدرة من المحرر."
+    link: /ar/engines/runtime
 ---

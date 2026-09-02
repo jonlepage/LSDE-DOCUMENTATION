@@ -53,4 +53,19 @@ features:
     title: "स्थानीयकरण"
     details: "यह अनिवार्य मॉड्यूल आपको अपने प्रोजेक्ट की भाषाओं और नेमस्पेस को कॉन्फ़िगर करने में सक्षम बनाता है।…"
     link: /hi/interface/localization-manager
+  - icon:
+      src: /icons/rendering.svg
+    title: "रेंडरिंग"
+    details: "LSDE एक बहुत ही उन्नत टेक्स्ट रेंडरिंग इंजन प्रदान करता है जो टेक्स्ट सेगमेंट के रेंडरिंग को वास्तविक समय में अनुकूलित करने की…"
+    link: /hi/features/rendering
+  - icon:
+      src: /icons/importexport.svg
+    title: "आयात/निर्यात"
+    details: "यदि आप i18next के अलावा किसी अन्य कस्टम इंजन के साथ काम कर रहे हैं, तो LSDE आपको अपना स्वयं का middleware कॉन्फ़िगर करने की अनुमति…"
+    link: /hi/features/import-export
+  - icon:
+      src: /icons/runtime.svg
+    title: "Runtime (LSDEDE)"
+    details: "मल्टी-रनटाइम निष्पादन इंजन एडिटर से निर्यात किए गए ब्लूप्रिंट को लोड और निष्पादित करता है।…"
+    link: /hi/engines/runtime
 ---

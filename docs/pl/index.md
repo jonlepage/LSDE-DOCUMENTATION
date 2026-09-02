@@ -53,4 +53,19 @@ features:
     title: "Lokalizacja"
     details: "Ten obowiązkowy moduł umożliwia konfigurację języków i przestrzeni nazw Twojego projektu."
     link: /pl/interface/localization-manager
+  - icon:
+      src: /icons/rendering.svg
+    title: "Renderowanie"
+    details: "LSDE oferuje bardzo zaawansowany silnik renderowania tekstu, który umożliwia personalizację renderowania segmentów tekstu w czasie…"
+    link: /pl/features/rendering
+  - icon:
+      src: /icons/importexport.svg
+    title: "Import/Eksport"
+    details: "Jeśli pracujesz z własnym silnikiem innym niż i18next, LSDE pozwala na skonfigurowanie własnego middleware."
+    link: /pl/features/import-export
+  - icon:
+      src: /icons/runtime.svg
+    title: "Runtime (LSDEDE)"
+    details: "Silnik wykonawczy multi-runtime ładuje i wykonuje blueprinty eksportowane z edytora."
+    link: /pl/engines/runtime
 ---

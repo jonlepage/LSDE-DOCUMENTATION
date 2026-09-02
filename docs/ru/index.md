@@ -53,4 +53,19 @@ features:
     title: "Локализация"
     details: "Этот обязательный модуль позволяет настроить языки и пространства имён для вашего проекта."
     link: /ru/interface/localization-manager
+  - icon:
+      src: /icons/rendering.svg
+    title: "Рендеринг"
+    details: "LSDE предлагает очень продвинутый движок рендеринга текста, который позволяет настраивать рендеринг текстовых сегментов в реальном…"
+    link: /ru/features/rendering
+  - icon:
+      src: /icons/importexport.svg
+    title: "Импорт/экспорт"
+    details: "Если вы работаете с кастомным движком, отличным от i18next, LSDE позволяет настроить ваш собственный middleware."
+    link: /ru/features/import-export
+  - icon:
+      src: /icons/runtime.svg
+    title: "Runtime (LSDEDE)"
+    details: "Мульти-runtime движок выполнения загружает и выполняет blueprints, экспортированные из редактора."
+    link: /ru/engines/runtime
 ---

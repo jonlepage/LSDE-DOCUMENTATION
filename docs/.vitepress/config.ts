@@ -130,7 +130,10 @@ const locales = Object.fromEntries(
   langs.map((l) => [
     l.code,
     {
-      label: l.label,
+      // Le code ISO à côté du nom : « Français (fr) ». Il lève l'ambiguïté pour
+      // qui ne lit pas l'alphabet d'une langue (中文, हिन्दी, العربية) et correspond
+      // au préfixe d'URL.
+      label: `${l.label} (${l.code})`,
       lang: l.code,
       dir: l.dir as 'ltr' | 'rtl',
       // Pas de `link` : VitePress utilise alors `/<lang>/` (l'accueil) pour le logo,

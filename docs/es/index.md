@@ -53,4 +53,19 @@ features:
     title: "Localización"
     details: "Este módulo obligatorio le permite configurar los idiomas y los espacios de nombres de su proyecto."
     link: /es/interface/localization-manager
+  - icon:
+      src: /icons/rendering.svg
+    title: "Renderizado"
+    details: "LSDE ofrece un motor de renderizado de texto muy avanzado que permite personalizar en tiempo real el renderizado de segmentos de…"
+    link: /es/features/rendering
+  - icon:
+      src: /icons/importexport.svg
+    title: "Importación/Exportación"
+    details: "Si trabajas con un motor personalizado que no sea i18next, LSDE te permite configurar tu propio middleware."
+    link: /es/features/import-export
+  - icon:
+      src: /icons/runtime.svg
+    title: "Runtime (LSDEDE)"
+    details: "El motor de ejecución multi-runtime carga y ejecuta los blueprints exportados desde el editor."
+    link: /es/engines/runtime
 ---

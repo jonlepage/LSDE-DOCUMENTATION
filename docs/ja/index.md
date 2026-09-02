@@ -53,4 +53,19 @@ features:
     title: "ローカライゼーション"
     details: "この必須モジュールを使用すると、プロジェクトの言語とネームスペースを構成できます。"
     link: /ja/interface/localization-manager
+  - icon:
+      src: /icons/rendering.svg
+    title: "レンダリング"
+    details: "LSDEは、テキストセグメントのレンダリングをリアルタイムでカスタマイズできる、非常に高度なテキストレンダリングエンジンを提供します。"
+    link: /ja/features/rendering
+  - icon:
+      src: /icons/importexport.svg
+    title: "インポート/エクスポート"
+    details: "i18next 以外のカスタムエンジンを使用している場合、LSDE では独自の middleware を設定できます。これにより、データを LSDE フォーマットにインポートしたり、逆に LSDE…"
+    link: /ja/features/import-export
+  - icon:
+      src: /icons/runtime.svg
+    title: "Runtime (LSDEDE)"
+    details: "マルチランタイム実行エンジンは、エディターからエクスポートされたブループリントを読み込み、実行します。"
+    link: /ja/engines/runtime
 ---

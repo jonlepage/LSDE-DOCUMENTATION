@@ -28,6 +28,11 @@ const CARDS = [
   { key: 'codebase', icon: 'codebase', link: 'features/scanning' },
   { key: 'voice', icon: 'voice', link: 'features/voice' },
   { key: 'diagnostic', icon: 'diagnostic', link: 'interface/localization-manager' },
+  // Ces trois-là n'ont pas de texte marketing dans les locales : le titre et la
+  // description viennent de la page de doc elle-même, via le repli déjà en place.
+  { key: 'rendering', icon: 'rendering', link: 'features/rendering' },
+  { key: 'importExport', icon: 'importexport', link: 'features/import-export' },
+  { key: 'runtime', icon: 'runtime', link: 'engines/runtime' },
 ];
 
 const CTA = {

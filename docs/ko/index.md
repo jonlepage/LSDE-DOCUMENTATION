@@ -53,4 +53,19 @@ features:
     title: "현지화"
     details: "이 필수 모듈을 통해 프로젝트의 언어와 네임스페이스를 구성할 수 있습니다."
     link: /ko/interface/localization-manager
+  - icon:
+      src: /icons/rendering.svg
+    title: "렌더링"
+    details: "LSDE는 텍스트 세그먼트의 렌더링을 실시간으로 사용자 지정할 수 있는 매우 고급 텍스트 렌더링 엔진을 제공합니다."
+    link: /ko/features/rendering
+  - icon:
+      src: /icons/importexport.svg
+    title: "가져오기/내보내기"
+    details: "i18next 이외의 커스텀 엔진을 사용하는 경우, LSDE를 통해 자체 middleware를 구성할 수 있습니다. 이를 통해 데이터를 LSDE 형식으로 import하거나, 반대로 LSDE 형식을 자체 구조로 export할 수 있습니다."
+    link: /ko/features/import-export
+  - icon:
+      src: /icons/runtime.svg
+    title: "Runtime (LSDEDE)"
+    details: "멀티 런타임 실행 엔진은 에디터에서 내보낸 블루프린트를 로드하고 실행합니다."
+    link: /ko/engines/runtime
 ---

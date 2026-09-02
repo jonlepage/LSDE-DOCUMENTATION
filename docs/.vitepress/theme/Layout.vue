@@ -1,6 +1,29 @@
 <script setup lang="ts">
+import { onMounted, watch } from 'vue';
 import DefaultTheme from 'vitepress/theme';
+import { useData } from 'vitepress';
 import EcosystemCards from './components/EcosystemCards.vue';
+
+const { lang } = useData();
+
+/**
+ * Mémorise la langue réellement consultée, pour que le prochain passage par la
+ * racine y revienne. Sans cela, seul un clic sur la page de choix comptait : celui
+ * qui bascule de langue avec le sélecteur du menu était renvoyé, au retour sur `/`,
+ * vers la langue de son navigateur plutôt que vers celle qu'il venait de choisir.
+ */
+function remember(code: string) {
+  try {
+    localStorage.setItem('lsde-docs-lang', code);
+  } catch {
+    /* stockage indisponible (navigation privée, réglages stricts) : sans effet */
+  }
+}
+
+onMounted(() => {
+  remember(lang.value);
+  watch(lang, remember);
+});
 </script>
 
 <template>
