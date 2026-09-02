@@ -56,7 +56,7 @@ const DOCS_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'
 const pageExists = (lang: string, section: string, slug: string) =>
   fs.existsSync(path.join(DOCS_DIR, lang, section, `${slug}.md`));
 
-/** Sur GitHub Pages le site vit sous /<repo>/ ; en dev il vit à la racine. */
+/** Sur GitHub Pages le site vit sous /<repo>/ ; en dev il vit à la racine */
 const base = process.env.DOCS_BASE ?? '/';
 
 // ─────────────────────────────────────────────────────── UI strings par langue
