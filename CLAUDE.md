@@ -43,10 +43,11 @@ structure.json  ──┬─→ import-from-i18n.ts ─→ docs/<lang>/**/*.md  
 
 ### Le couplage avec LEPASOFT-WEB
 
-`scripts/import-from-i18n.ts` lit un **chemin absolu** vers le projet frère
-(`d:/Users/jonle/Documents/DEV/projets/LEPASOFT-WEB`) pour ses locales et ses images. L'import est
-un outil de migration ponctuel, pas une étape de build. Dès qu'un `.md` est édité ici, relancer
-`npm run import` écrase la modification. Vérifier ce point avant de proposer `npm run sync`.
+`scripts/import-from-i18n.ts` lit le projet frère `../../LEPASOFT-WEB` pour ses locales et ses
+images, surchargeable par la variable d'environnement `LSDE_WEB`. L'import est un outil de
+migration ponctuel, pas une étape de build : le workflow GitHub Actions ne l'exécute pas, et il
+n'a pas accès à ce projet. Dès qu'un `.md` est édité ici, relancer `npm run import` écrase la
+modification. Vérifier ce point avant de proposer `npm run sync`.
 
 ## Le convertisseur (import-from-i18n.ts)
 
