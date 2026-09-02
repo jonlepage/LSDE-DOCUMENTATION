@@ -8,7 +8,9 @@ const codes = langs.map((l) => l.code);
 const router = useRouter();
 const redirecting = ref(true);
 
-const target = (code: string) => `/${code}/getting-started/introduction`;
+// L'accueil de la langue, pas la première page du guide : chaque langue a sa page
+// d'accueil (hero, cartes, écosystème) et c'est elle que la racine doit servir.
+const target = (code: string) => `/${code}/`;
 
 onMounted(() => {
   // Langue déjà choisie > langue du navigateur > anglais.

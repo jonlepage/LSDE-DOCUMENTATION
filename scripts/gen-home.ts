@@ -132,7 +132,8 @@ ${features}
 
 // ── Racine : sélecteur de langue + redirection douce ──────────────────────
 const links = langs
-  .map((l: { code: string; label: string }) => `- [${l.label}](/${l.code}/getting-started/introduction)`)
+  // Vers l'accueil de la langue, comme la redirection de LangGate.
+  .map((l: { code: string; label: string }) => `- [${l.label}](/${l.code}/)`)
   .join('\n');
 
 fs.writeFileSync(
