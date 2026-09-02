@@ -97,6 +97,15 @@ function sidebar(lang: string): DefaultTheme.SidebarItem[] {
 /** Le site vitrine est multilingue : ses URL portent le préfixe de langue. */
 const siteLink = (url: string, lang: string) => url.replace('{lang}', lang);
 
+/** Lettres exposantes Unicode, pour les 15 lettres qu'utilisent nos codes ISO. */
+const SUPERSCRIPT: Record<string, string> = {
+  a: 'ᵃ', e: 'ᵉ', f: 'ᶠ', h: 'ʰ', i: 'ⁱ', j: 'ʲ', k: 'ᵏ', l: 'ˡ',
+  n: 'ⁿ', o: 'ᵒ', p: 'ᵖ', r: 'ʳ', s: 'ˢ', u: 'ᵘ', z: 'ᶻ',
+};
+
+const superscript = (code: string) =>
+  [...code].map((c) => SUPERSCRIPT[c] ?? c).join('');
+
 function nav(lang: string): DefaultTheme.NavItem[] {
   const t = ui(lang);
   const dict = L[lang] ?? {};
@@ -130,10 +139,11 @@ const locales = Object.fromEntries(
   langs.map((l) => [
     l.code,
     {
-      // Le code ISO à côté du nom : « Français (fr) ». Il lève l'ambiguïté pour
-      // qui ne lit pas l'alphabet d'une langue (中文, हिन्दी, العربية) et correspond
-      // au préfixe d'URL.
-      label: `${l.label} (${l.code})`,
+      // Le code ISO en exposant : « Français ᶠʳ ». Il lève l'ambiguïté pour qui ne
+      // lit pas l'alphabet d'une langue (中文, हिन्दी, العربية) et correspond au
+      // préfixe d'URL. VitePress rend ce libellé en texte brut, sans balise : les
+      // lettres exposantes Unicode sont donc le seul moyen d'obtenir un exposant.
+      label: `${l.label} ${superscript(l.code)}`,
       lang: l.code,
       dir: l.dir as 'ltr' | 'rtl',
       // Pas de `link` : VitePress utilise alors `/<lang>/` (l'accueil) pour le logo,
