@@ -15,7 +15,7 @@ LLMs ("Large Language Models") are human-designed mathematical architectures tha
 LS Dialog Editor provides a default context for every request addressed to an LLM, which ensures more relevant results.
 
 ::: warning Warning
-Warning: Although the results are satisfactory and can considerably reduce production costs, it remains essential to use a professional studio for final verification.
+Although the results are satisfactory and can considerably reduce production costs, it remains essential to use a professional studio for final verification.
 :::
 
 <DocImage src="/doc/lsde/doc-lsde-features-howtotranslate-1.webp" />
@@ -106,7 +106,7 @@ It also allows you to switch to the final rendering if you cancel changes by cli
 5. You can iterate as many times as necessary by sending additional directives to the LLM.
 
 ::: warning Warning
-Warning: depending on the model used, caching is not systematic, which can increase costs exponentially because the entire history is sent back with each iteration.
+depending on the model used, caching is not systematic, which can increase costs exponentially because the entire history is sent back with each iteration.
 :::
 6. Telemetry: displays the token costs returned by the LLM provider.
 7. Buttons to accept or refuse changes once refinement is complete.

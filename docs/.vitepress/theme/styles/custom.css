@@ -76,6 +76,74 @@
   border-top-color: var(--vp-c-divider);
 }
 
+/* ─── Notes et avertissements ────────────────────────────────────────────
+   La page en compte plus de 800 : chacun affichait un titre « Note » sur sa
+   propre ligne, ce qui doublait leur hauteur pour un mot déjà porté par la
+   couleur. Le mot passe en icône, et le titre reste dans le DOM à l'usage des
+   lecteurs d'écran — la couleur seule ne distingue rien pour qui ne la voit
+   pas.                                                                      */
+.vp-doc .custom-block {
+  position: relative;
+  margin: 1rem 0;
+  padding: 10px 14px 10px 40px;
+  font-size: 14px;
+  line-height: 1.62;
+  border: 1px solid transparent;
+}
+
+/* Visible pour les lecteurs d'écran, absent de la mise en page. */
+.vp-doc .custom-block-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.vp-doc .custom-block p {
+  margin: 0;
+}
+.vp-doc .custom-block p + p {
+  margin-top: 0.5em;
+}
+
+/* L'icône : un masque, donc elle prend la couleur du bloc. */
+.vp-doc .custom-block::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 14px;
+  top: 12px;
+  width: 15px;
+  height: 15px;
+  background-color: currentColor;
+  -webkit-mask: var(--lsde-block-icon) center / contain no-repeat;
+  mask: var(--lsde-block-icon) center / contain no-repeat;
+  opacity: 0.75;
+}
+
+/* « i » dans un carré — la signature anguleuse du logiciel. */
+.vp-doc .custom-block.tip {
+  color: var(--vp-c-brand-1);
+  --lsde-block-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5'%3E%3Cpath d='M1.6 1.6h12.8v12.8H1.6z'/%3E%3Cpath d='M8 4.4v.01M8 7v4.4' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* Triangle et « ! » — le seul signe d'alerte universel. */
+.vp-doc .custom-block.warning {
+  color: var(--vp-c-warning-1);
+  --lsde-block-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5'%3E%3Cpath d='M8 1.4 15.2 14.6H.8z' stroke-linejoin='miter'/%3E%3Cpath d='M8 5.8v3.7M8 12.1v.01' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* Le texte reprend la couleur de lecture : seule l'icône porte l'accent. */
+.vp-doc .custom-block p,
+.vp-doc .custom-block li {
+  color: var(--vp-c-text-2);
+}
+.vp-doc .custom-block strong {
+  color: var(--vp-c-text-1);
+}
+
 /* ─── Accueil : grille blueprint qui s'estompe depuis la droite ──────────── */
 .VPHome .VPHero {
   position: relative;

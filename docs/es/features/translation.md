@@ -15,7 +15,7 @@ Los LLM (*Large Language Models*) son arquitecturas matemáticas diseñadas por 
 LS Editor de Diálogo proporciona por defecto un contexto a cada solicitud dirigida a un LLM, lo que garantiza resultados más pertinentes.
 
 ::: tip Nota
-Atención: Aunque los resultados sean satisfactorios y puedan reducir considerablemente los costes de producción, sigue siendo indispensable recurrir a un estudio profesional para la verificación final.
+Aunque los resultados sean satisfactorios y puedan reducir considerablemente los costes de producción, sigue siendo indispensable recurrir a un estudio profesional para la verificación final.
 :::
 
 <DocImage src="/doc/lsde/doc-lsde-features-howtotranslate-1.webp" />
@@ -106,7 +106,7 @@ También permite cambiar a la visualización final si cancela cambios haciendo c
 5. Puede iterar tantas veces como sea necesario enviando directrices adicionales al LLM.
 
 ::: tip Nota
-Atención: según el modelo utilizado, el almacenamiento en caché no es sistemático, lo que puede aumentar los costes de forma exponencial, ya que la totalidad del historial se vuelve a enviar en cada iteración.
+según el modelo utilizado, el almacenamiento en caché no es sistemático, lo que puede aumentar los costes de forma exponencial, ya que la totalidad del historial se vuelve a enviar en cada iteración.
 :::
 6. Telemetría: muestra los costes en tokens devueltos por el proveedor de LLM.
 7. Botones para aceptar o rechazar los cambios una vez finalizado el ajuste.

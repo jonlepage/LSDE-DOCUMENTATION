@@ -69,6 +69,17 @@ const WARN_LABEL: Record<string, string> = {
   ja: '注意', ko: '주의', hi: 'चेतावनी', ru: 'Внимание', ar: 'تحذير',
 };
 
+/**
+ * « Warning : », « Attention : », « 注意：»… en tête d'un bloc : l'étiquette du
+ * conteneur le dit déjà, le mot ferait doublon à l'écran.
+ */
+const REDUNDANT_PREFIX = new RegExp(
+  `^\\s*(?:${[...new Set([...Object.values(NOTE_LABEL), ...Object.values(WARN_LABEL), 'Warning', 'Note', 'Important'])]
+    .map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+    .join('|')})\\s*[:：]\\s*`,
+  'i',
+);
+
 // ─────────────────────────────────────────────────────────── helpers i18n
 
 function loadNamespaces(lang: string): Record<string, unknown> {
@@ -215,10 +226,13 @@ function convert(raw: string, lang: string, ns: Record<string, unknown>): string
 
   // 7. blocs « > » -> conteneurs VitePress
   t = t.replace(/(?:^>[^\n]*\n?)+/gm, (block) => {
-    const body = block.replace(/^>\s?/gm, '').trimEnd();
+    let body = block.replace(/^>\s?/gm, '').trimEnd();
     const isWarn = /(⚠|attention|warning|important|jamais|never)/i.test(body.slice(0, 140));
     const kind = isWarn ? 'warning' : 'tip';
     const label = isWarn ? (WARN_LABEL[lang] ?? 'Warning') : (NOTE_LABEL[lang] ?? 'Note');
+    // Le bloc porte déjà son étiquette : un texte qui recommence par « Warning : »
+    // la répétait à l'écran.
+    body = body.replace(REDUNDANT_PREFIX, '');
     return `\n::: ${kind} ${label}\n${body}\n:::\n`;
   });
 

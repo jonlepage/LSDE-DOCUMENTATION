@@ -15,7 +15,7 @@ Les LLM (*Large Language Models*) sont des architectures mathématiques conçues
 LS Dialog Editor fournit par défaut un contexte à chaque requête adressée à un LLM, ce qui garantit des résultats plus pertinents.
 
 ::: warning Attention
-Attention : Bien que les résultats soient satisfaisants et puissent considérablement réduire les coûts de production, il reste indispensable de faire appel à un studio professionnel pour la vérification finale.
+Bien que les résultats soient satisfaisants et puissent considérablement réduire les coûts de production, il reste indispensable de faire appel à un studio professionnel pour la vérification finale.
 :::
 
 <DocImage src="/doc/lsde/doc-lsde-features-howtotranslate-1.webp" />
@@ -106,7 +106,7 @@ Il permet aussi de basculer vers le rendu final si vous annulez des changements 
 5. Vous pouvez itérer autant de fois que nécessaire en envoyant des directives supplémentaires au LLM.
 
 ::: warning Attention
-Attention : selon le modèle utilisé, la mise en cache n'est pas systématique, ce qui peut augmenter les coûts de façon exponentielle, car l'intégralité de l'historique est renvoyée à chaque itération.
+selon le modèle utilisé, la mise en cache n'est pas systématique, ce qui peut augmenter les coûts de façon exponentielle, car l'intégralité de l'historique est renvoyée à chaque itération.
 :::
 6. Télémétrie : affiche les coûts en tokens retournés par le prestataire LLM.
 7. Boutons pour accepter ou refuser les changements une fois l'affinement terminé.

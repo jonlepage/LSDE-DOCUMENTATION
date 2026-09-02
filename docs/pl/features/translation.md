@@ -15,7 +15,7 @@ LLM (*Large Language Models*) to architektury matematyczne zaprojektowane przez 
  domyślnie dostarcza kontekst do każdego zapytania kierowanego do LLM, co gwarantuje bardziej trafne wyniki.
 
 ::: tip Uwaga
-Uwaga: Chociaż wyniki są satysfakcjonujące i mogą znacznie obniżyć koszty produkcji, niezbędne jest skorzystanie z usług profesjonalnego studia w celu końcowej weryfikacji.
+Chociaż wyniki są satysfakcjonujące i mogą znacznie obniżyć koszty produkcji, niezbędne jest skorzystanie z usług profesjonalnego studia w celu końcowej weryfikacji.
 :::
 
 <DocImage src="/doc/lsde/doc-lsde-features-howtotranslate-1.webp" />
@@ -106,7 +106,7 @@ Pozwala on również przełączyć się na renderowanie końcowe, jeśli anuluje
 5. Możesz iterować tyle razy, ile to konieczne, wysyłając dodatkowe instrukcje do LLM.
 
 ::: tip Uwaga
-Uwaga: w zależności od używanego modelu buforowanie (caching) nie jest systematyczne, co może wykładniczo zwiększyć koszty, ponieważ cała historia jest przesyłana przy każdej iteracji.
+w zależności od używanego modelu buforowanie (caching) nie jest systematyczne, co może wykładniczo zwiększyć koszty, ponieważ cała historia jest przesyłana przy każdej iteracji.
 :::
 6. Telemetria: wyświetla koszty w tokenach zwrócone przez dostawcę LLM.
 7. Przyciski do akceptowania lub odrzucania zmian po zakończeniu dopracowywania.
