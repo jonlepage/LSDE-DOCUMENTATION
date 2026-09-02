@@ -1,36 +1,16 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { useRouter, withBase } from 'vitepress';
+import { withBase } from 'vitepress';
 import structure from '../../data/structure.json';
 
 const langs = structure.langs as { code: string; label: string; dir: string }[];
-const codes = langs.map((l) => l.code);
-const router = useRouter();
-const redirecting = ref(true);
 
 // L'accueil de la langue, pas la première page du guide : chaque langue a sa page
 // d'accueil (hero, cartes, écosystème) et c'est elle que la racine doit servir.
 const target = (code: string) => `/${code}/`;
 
-onMounted(() => {
-  // Langue déjà choisie > langue du navigateur > anglais.
-  let pick = 'en';
-  try {
-    const saved = localStorage.getItem('lsde-docs-lang');
-    if (saved && codes.includes(saved)) pick = saved;
-    else {
-      const nav = (navigator.languages ?? [navigator.language])
-        .map((l) => l.split('-')[0].toLowerCase())
-        .find((l) => codes.includes(l));
-      if (nav) pick = nav;
-    }
-  } catch {
-    /* stockage indisponible : on garde l'anglais */
-  }
-  router.go(withBase(target(pick)));
-  // Si la navigation n'a pas lieu (JS partiel, crawler), on montre la liste.
-  setTimeout(() => (redirecting.value = false), 1200);
-});
+// Aucune redirection ici : elle est faite par un script du <head> (config.ts), avant
+// le rendu, pour éviter que cette page ne clignote. Ce composant reste la page de
+// choix : elle s'affiche aux robots, sans JavaScript, et sur `/#choose`.
 
 function choose(code: string) {
   try {
@@ -48,8 +28,6 @@ function choose(code: string) {
     <img class="gate__logo" :src="withBase('/brand/lsde-64x64.webp')" alt="" width="56" height="56" />
     <h1 class="gate__title">LS-Dialog&nbsp;Editor</h1>
     <p class="gate__sub">Documentation</p>
-
-    <p v-if="redirecting" class="gate__hint">Redirection…</p>
 
     <nav class="gate__grid" aria-label="Languages">
       <a
@@ -115,11 +93,6 @@ function choose(code: string) {
   color: var(--vp-c-text-3);
 }
 
-.gate__hint {
-  margin-top: 22px;
-  font-size: 13px;
-  color: var(--vp-c-text-3);
-}
 
 .gate__grid {
   display: grid;

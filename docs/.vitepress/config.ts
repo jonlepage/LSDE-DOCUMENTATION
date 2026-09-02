@@ -192,7 +192,11 @@ export default defineConfig({
     const canonical = `${product.siteUrl}/${rel}`.replace(/\/$/, '');
 
     pageData.frontmatter.head ??= [];
-    const head = pageData.frontmatter.head as [string, Record<string, string>][];
+    // Le 3e élément porte le contenu de la balise (utilisé par les blocs JSON-LD).
+    const head = pageData.frontmatter.head as (
+      | [string, Record<string, string>]
+      | [string, Record<string, string>, string]
+    )[];
 
     // Les alternates couvrent AUSSI les accueils de langue (rest vide) et la racine :
     // ce sont les pages les plus demandées, elles ne peuvent pas rester sans hreflang.
@@ -224,6 +228,74 @@ export default defineConfig({
     }
     head.push(['meta', { name: 'twitter:title', content: title }]);
     head.push(['meta', { property: 'og:locale', content: lang ?? 'en' }]);
+
+    // ── Données structurées ────────────────────────────────────────────────
+    // Le fil d'Ariane fait afficher « LSDE › Interface › Blueprint » dans les
+    // résultats de recherche au lieu de l'URL brute.
+    const dict = L[lang] ?? {};
+    const sectionId = restParts[0];
+    const jsonLd: Record<string, unknown>[] = [];
+
+    if (rest && sectionId) {
+      const crumbs = [
+        { name: product.shortName, item: `${product.siteUrl}/${lang}/` },
+        { name: dict[sectionId] ?? sectionId, item: undefined },
+        { name: title, item: canonical },
+      ];
+      jsonLd.push({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: crumbs.map((c, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: c.name,
+          ...(c.item ? { item: c.item } : {}),
+        })),
+      });
+      jsonLd.push({
+        '@context': 'https://schema.org',
+        '@type': 'TechArticle',
+        headline: title,
+        ...(desc ? { description: desc } : {}),
+        inLanguage: lang,
+        url: canonical,
+        isPartOf: { '@type': 'WebSite', name: `${product.name} Documentation`, url: `${product.siteUrl}/` },
+        author: { '@type': 'Organization', name: 'LepaSoft', url: product.links.website.replace('{lang}', lang) },
+        publisher: { '@type': 'Organization', name: 'LepaSoft' },
+      });
+    } else {
+      jsonLd.push({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: `${product.name} Documentation`,
+        alternateName: `${product.shortName} Docs`,
+        url: isRoot ? `${product.siteUrl}/` : canonical,
+        inLanguage: langs.map((l) => l.code),
+        publisher: { '@type': 'Organization', name: 'LepaSoft' },
+      });
+    }
+
+    for (const node of jsonLd) {
+      head.push(['script', { type: 'application/ld+json' }, JSON.stringify(node)]);
+    }
+
+    // ── Racine : aiguillage vers la langue, AVANT le rendu ─────────────────
+    // Dans un composant Vue, la redirection ne part qu'une fois la page montée :
+    // le sélecteur reste affiché ~1 s, ce qui se voit. Ici le script est dans le
+    // <head>, donc il s'exécute avant que le corps ne soit peint.
+    // `location.replace` n'ajoute pas d'entrée d'historique : le bouton Retour
+    // ne rebouclerait pas sur cette page.
+    // `#choose` court-circuite l'aiguillage pour afficher la liste des langues.
+    if (isRoot) {
+      const codes = JSON.stringify(langs.map((l) => l.code));
+      head.push(['script', {}, `(function(){try{
+if(location.hash==='#choose')return;
+var c=${codes},b=${JSON.stringify(base)},p=null;
+try{var s=localStorage.getItem('lsde-docs-lang');if(s&&c.indexOf(s)>-1)p=s;}catch(e){}
+if(!p){var n=navigator.languages||[navigator.language||'en'];
+for(var i=0;i<n.length;i++){var l=String(n[i]).split('-')[0].toLowerCase();if(c.indexOf(l)>-1){p=l;break;}}}
+location.replace(b+(p||'en')+'/');}catch(e){}})();`]);
+    }
   },
 
   markdown: {
