@@ -1,0 +1,158 @@
+/**
+ * Tokens LSDE Docs — repris du thème du logiciel.
+ * Source : LSDE2/src/ui/theme/darkTheme.const.ts et lightTheme.const.ts.
+ *
+ * Deux règles de cette source valent pour la doc :
+ *   - accent framboise (identité LEPASOFT), jamais d'indigo ni de violet ;
+ *   - neutres gris-noir SANS teinte bleue (demande explicite de Jonathan).
+ * Les niveaux de gris du thème VitePress sont conservés — seule leur teinte est neutralisée —
+ * parce que le fond et la sidebar actuels sont validés.
+ */
+
+:root {
+  --vp-border-radius: 1px;
+
+  /* Palette du logiciel, mode sombre (darkTheme.const.ts). */
+  --lsde-accent: #e0517e;
+  --lsde-accent-hover: #ef6a92;
+  --lsde-on-accent: #1c060e;
+  --lsde-danger: #e5484d;
+  --lsde-warning: #e2a336;
+  --lsde-success: #46a758;
+
+  /* Grille « blueprint » derrière le hero et le sélecteur de langue. */
+  --lsde-grid-line: rgba(224, 81, 126, 0.13);
+  --lsde-grid-size: 48px;
+}
+
+/* ── Mode sombre ──────────────────────────────────────────────────────────── */
+.dark {
+  /* Accent. brand-1 sert au texte (liens, item actif) : c'est la variante claire
+     qui tient le contraste sur les panneaux, l'accent plein reste pour les aplats. */
+  --vp-c-brand-1: #ef6a92;
+  --vp-c-brand-2: #e0517e;
+  --vp-c-brand-3: #e0517e;
+  --vp-c-brand-soft: rgba(224, 81, 126, 0.16);
+
+  /* Neutres : mêmes luminosités que VitePress, teinte bleue retirée
+     (#1b1b1f → #1b1b1b, #161618 → #161616, #202127 → #202020). */
+  --vp-c-bg: #1b1b1b;
+  --vp-c-bg-alt: #161616;
+  --vp-c-bg-soft: #202020;
+  --vp-c-bg-elv: #202020;
+
+  --vp-c-text-1: #dcdcdc;
+  --vp-c-text-2: #979797;
+  --vp-c-text-3: #5d5d5d;
+
+  --vp-c-divider: #2c2c2c;
+  --vp-c-gutter: #131313;
+  --vp-c-border: #2c2c2c;
+
+  /* Surface d'écriture du logiciel : le code se lit dessus. */
+  --vp-code-block-bg: #202020;
+
+  /* Sémantiques du logiciel. */
+  --vp-c-tip-1: var(--vp-c-brand-1);
+  --vp-c-tip-2: var(--vp-c-brand-2);
+  --vp-c-tip-3: var(--vp-c-brand-3);
+  --vp-c-tip-soft: rgba(224, 81, 126, 0.1);
+
+  --vp-c-warning-1: #e2a336;
+  --vp-c-warning-2: #e2a336;
+  --vp-c-warning-3: #e2a336;
+  --vp-c-warning-soft: rgba(226, 163, 54, 0.12);
+
+  --vp-c-danger-1: #e5484d;
+  --vp-c-danger-2: #e5484d;
+  --vp-c-danger-3: #e5484d;
+  --vp-c-danger-soft: rgba(229, 72, 77, 0.12);
+
+  --vp-c-yellow-1: #e2a336;
+  --vp-c-yellow-soft: rgba(226, 163, 54, 0.12);
+  --vp-c-green-1: #46a758;
+  --vp-c-green-soft: rgba(70, 167, 88, 0.12);
+  --vp-c-red-1: #e5484d;
+  --vp-c-red-soft: rgba(229, 72, 77, 0.12);
+
+  /* Barres de défilement et sélection : mêmes tokens que le logiciel. */
+  --lsde-scrollbar: #4a4a4a;
+  --lsde-scrollbar-hover: #727272;
+  --lsde-focus: rgba(224, 81, 126, 0.4);
+  --lsde-text-selection: rgba(226, 176, 74, 0.3);
+}
+
+/* ── Mode clair (lightTheme.const.ts) ─────────────────────────────────────── */
+html:not(.dark) {
+  --vp-c-brand-1: #c33a68;
+  --vp-c-brand-2: #a92e57;
+  --vp-c-brand-3: #c33a68;
+  --vp-c-brand-soft: rgba(195, 58, 104, 0.12);
+
+  --vp-c-bg: #f4f4f4;
+  --vp-c-bg-alt: #e6e6e6;
+  --vp-c-bg-soft: #ededed;
+  --vp-c-bg-elv: #fcfcfc;
+
+  --vp-c-text-1: #1e1e1e;
+  --vp-c-text-2: #585858;
+  --vp-c-text-3: #8a8a8a;
+
+  --vp-c-divider: #cfcfcf;
+  --vp-c-gutter: #cfcfcf;
+  --vp-c-border: #cfcfcf;
+
+  --vp-code-block-bg: #fcfcfc;
+
+  --vp-c-tip-1: var(--vp-c-brand-1);
+  --vp-c-tip-2: var(--vp-c-brand-2);
+  --vp-c-tip-3: var(--vp-c-brand-3);
+  --vp-c-tip-soft: rgba(195, 58, 104, 0.08);
+
+  --vp-c-warning-1: #8a5f10;
+  --vp-c-warning-2: #8a5f10;
+  --vp-c-warning-3: #8a5f10;
+  --vp-c-warning-soft: rgba(179, 120, 26, 0.14);
+
+  --vp-c-danger-1: #c0272d;
+  --vp-c-danger-2: #c0272d;
+  --vp-c-danger-3: #c0272d;
+  --vp-c-danger-soft: rgba(192, 39, 45, 0.1);
+
+  --vp-c-yellow-1: #8a5f10;
+  --vp-c-yellow-soft: rgba(179, 120, 26, 0.14);
+  --vp-c-green-1: #2f7d3c;
+  --vp-c-green-soft: rgba(47, 125, 60, 0.1);
+  --vp-c-red-1: #c0272d;
+  --vp-c-red-soft: rgba(192, 39, 45, 0.1);
+
+  --lsde-accent: #c33a68;
+  --lsde-accent-hover: #a92e57;
+  --lsde-on-accent: #ffffff;
+  --lsde-danger: #c0272d;
+  --lsde-warning: #8a5f10;
+  --lsde-success: #2f7d3c;
+
+  --lsde-grid-line: rgba(195, 58, 104, 0.12);
+  --lsde-scrollbar: #b3b3b3;
+  --lsde-scrollbar-hover: #8b8b8b;
+  --lsde-focus: rgba(195, 58, 104, 0.33);
+  --lsde-text-selection: rgba(195, 58, 104, 0.25);
+}
+
+/* Boutons : l'accent plein, avec la couleur de texte prévue pour lui (onAccent). */
+:root {
+  --vp-button-brand-bg: var(--lsde-accent);
+  --vp-button-brand-text: var(--lsde-on-accent);
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-hover-bg: var(--lsde-accent-hover);
+  --vp-button-brand-hover-text: var(--lsde-on-accent);
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-active-bg: var(--lsde-accent-hover);
+  --vp-button-brand-active-text: var(--lsde-on-accent);
+  --vp-button-brand-active-border: transparent;
+
+  /* Le nom du produit dans le hero : aplat d'accent, pas de dégradé. */
+  --vp-home-hero-name-color: var(--lsde-accent);
+  --vp-home-hero-name-background: transparent;
+}

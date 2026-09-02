@@ -1,0 +1,164 @@
+/**
+ * Habillage LSDE Docs.
+ * Le thème par défaut de VitePress fait le gros du travail ; les couleurs viennent
+ * de vars.css (tokens du logiciel). Ici : les angles vifs et les quelques éléments
+ * que VitePress ne dérive pas de ses variables.
+ */
+
+/* ─── Angles vifs : la signature du logiciel (metrics.radius = 1) ────────── */
+*,
+*::before,
+*::after {
+  border-radius: 1px !important;
+}
+
+/* ─── Barres de défilement — reprises telles quelles du logiciel ──────────
+   Ne PAS déclarer `scrollbar-width` ici : sur Chromium, la propriété standard
+   désactive tout le style ::-webkit-scrollbar et réimpose un pouce arrondi.
+   Elle est réservée à Firefox, plus bas.                                     */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--lsde-scrollbar);
+  /* Marge transparente : la poignée ne touche pas le bord de la gouttière. */
+  border: 2px solid transparent;
+  background-clip: content-box;
+  border-radius: 0 !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--lsde-scrollbar-hover);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox : il n'implémente pas ::-webkit-scrollbar, donc lui seul reçoit la
+   propriété standard. La condition garde Chromium à l'écart. */
+@supports not selector(::-webkit-scrollbar-thumb) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--lsde-scrollbar) transparent;
+  }
+}
+
+/* ─── Sélection et focus : tokens du logiciel ────────────────────────────── */
+::selection {
+  background: var(--lsde-text-selection);
+}
+
+:focus-visible {
+  outline: 1px solid var(--lsde-accent);
+  outline-offset: -1px;
+}
+
+/* ─── Interrupteur clair/sombre : rectangle, pas pilule ──────────────────── */
+.VPSwitch,
+.VPSwitch .check {
+  border-radius: 1px !important;
+}
+.VPSwitchAppearance .sun,
+.VPSwitchAppearance .moon {
+  border-radius: 0 !important;
+}
+
+/* ─── Titres de la doc : l'accent n'est pas décoratif, il marque le niveau ─ */
+.vp-doc h2 {
+  border-top-color: var(--vp-c-divider);
+}
+
+/* ─── Accueil : grille blueprint qui s'estompe depuis la droite ──────────── */
+.VPHome .VPHero {
+  position: relative;
+  overflow: visible;
+}
+
+.VPHome .VPHero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--lsde-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--lsde-grid-line) 1px, transparent 1px);
+  background-size: var(--lsde-grid-size) var(--lsde-grid-size);
+  -webkit-mask-image: linear-gradient(to right, transparent 10%, rgba(0, 0, 0, 0.35) 40%, rgba(0, 0, 0, 0.1) 100%);
+  mask-image: linear-gradient(to right, transparent 10%, rgba(0, 0, 0, 0.35) 40%, rgba(0, 0, 0, 0.1) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Titre de hero : le texte LSDE est une phrase, pas un nom court -> tailles raisonnables. */
+@media (max-width: 639px) {
+  .VPHero .text {
+    font-size: 26px;
+    line-height: 1.25;
+  }
+  .VPHero .tagline {
+    font-size: 16px;
+  }
+}
+@media (min-width: 640px) {
+  .VPHero .name {
+    font-size: 44px;
+    line-height: 1.1;
+  }
+  .VPHero .text {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+  .VPHero .tagline {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+}
+@media (min-width: 960px) {
+  .VPHero .name {
+    font-size: 48px;
+  }
+  .VPHero .text {
+    font-size: 36px;
+  }
+}
+
+/* Image de hero = capture produit, en panneau carré comme le bloc de code LSDEDE. */
+.VPHero .image-bg {
+  display: none;
+}
+.VPHero .image-src {
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-alt);
+}
+@media (min-width: 960px) {
+  .VPHero .image-container {
+    width: 440px;
+    height: auto;
+    transform: none;
+  }
+  .VPHero .image-src {
+    position: relative;
+    top: auto;
+    left: auto;
+    max-width: 440px;
+    max-height: none;
+    transform: none;
+  }
+}
+
+/* ─── Racine : liste de repli pour les robots (invisible) ────────────────── */
+.lang-gate-fallback {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

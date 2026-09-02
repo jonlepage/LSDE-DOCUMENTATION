@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jonlepage.github.io/LSDE-DOCUMENTATION/sitemap.xml
