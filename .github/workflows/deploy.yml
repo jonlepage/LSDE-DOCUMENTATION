@@ -31,10 +31,9 @@ jobs:
 
       - run: npm ci
 
-      # Le site vit sous https://<user>.github.io/<repo>/ → base = /<repo>/
+      # Le site vit à la racine du domaine docs.lepasoft.com (voir
+      # docs/public/CNAME), donc `base` reste à sa valeur par défaut : /
       - run: npm run build
-        env:
-          DOCS_BASE: /${{ github.event.repository.name }}/
 
       - uses: actions/configure-pages@v5
 

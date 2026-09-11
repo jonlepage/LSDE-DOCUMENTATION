@@ -6,7 +6,7 @@
     "shortName": "LSDE",
     "version": "2.0",
     "logo": "/brand/lsde-64x64.webp",
-    "siteUrl": "https://jonlepage.github.io/LSDE-DOCUMENTATION",
+    "siteUrl": "https://docs.lepasoft.com",
     "links": {
       "website": "https://lepasoft.com/{lang}",
       "download": "https://lepasoft.com/{lang}/software/ls-dialog-editor#download",
