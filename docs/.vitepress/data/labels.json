@@ -34,7 +34,8 @@
     "resources/faq": "FAQ",
     "resources/good-practices": "Bonnes pratiques",
     "resources/features-sheet": "Features Sheet",
-    "resources/mcp-bridge": "MCP Bridge"
+    "resources/mcp-bridge": "MCP Bridge",
+    "resources/cli": "CLI"
   },
   "en": {
     "getting-started": "Getting Started",
@@ -71,7 +72,8 @@
     "resources/faq": "FAQ",
     "resources/good-practices": "Good Practice",
     "resources/features-sheet": "Features Sheet",
-    "resources/mcp-bridge": "MCP Bridge"
+    "resources/mcp-bridge": "MCP Bridge",
+    "resources/cli": "CLI"
   },
   "es": {
     "getting-started": "Empezar",
@@ -108,7 +110,8 @@
     "resources/faq": "FAQ",
     "resources/good-practices": "Buena Práctica",
     "resources/features-sheet": "Hoja de características",
-    "resources/mcp-bridge": "MCP Bridge"
+    "resources/mcp-bridge": "MCP Bridge",
+    "resources/cli": "CLI"
   },
   "pl": {
     "getting-started": "Rozpocznij",
@@ -145,7 +148,8 @@
     "resources/faq": "FAQ",
     "resources/good-practices": "Dobra praktyka",
     "resources/features-sheet": "Arkusz funkcji",
-    "resources/mcp-bridge": "MCP Bridge"
+    "resources/mcp-bridge": "MCP Bridge",
+    "resources/cli": "CLI"
   },
   "zh": {
     "getting-started": "开始",
@@ -182,7 +186,8 @@
     "resources/faq": "常见问题",
     "resources/good-practices": "良好实践",
     "resources/features-sheet": "特性列表",
-    "resources/mcp-bridge": "MCP Bridge"
+    "resources/mcp-bridge": "MCP Bridge",
+    "resources/cli": "CLI"
   },
   "ja": {
     "getting-started": "始める",
@@ -219,7 +224,8 @@
     "resources/faq": "よくある質問",
     "resources/good-practices": "良い実践",
     "resources/features-sheet": "機能シート",
-    "resources/mcp-bridge": "MCP Bridge"
+    "resources/mcp-bridge": "MCP Bridge",
+    "resources/cli": "CLI"
   },
   "ko": {
     "getting-started": "시작하기",
@@ -256,7 +262,8 @@
     "resources/faq": "자주 묻는 질문",
     "resources/good-practices": "모범 사례",
     "resources/features-sheet": "기능 시트",
-    "resources/mcp-bridge": "MCP Bridge"
+    "resources/mcp-bridge": "MCP Bridge",
+    "resources/cli": "CLI"
   },
   "hi": {
     "getting-started": "शुरू करें",
@@ -293,7 +300,8 @@
     "resources/faq": "अक्सर पूछे जाने वाले प्रश्न",
     "resources/good-practices": "उत्तम अभ्यास",
     "resources/features-sheet": "फ़ीचर शीट",
-    "resources/mcp-bridge": "MCP Bridge"
+    "resources/mcp-bridge": "MCP Bridge",
+    "resources/cli": "CLI"
   },
   "ru": {
     "getting-started": "Начать",
@@ -330,7 +338,8 @@
     "resources/faq": "ЧаВо",
     "resources/good-practices": "Хорошая практика",
     "resources/features-sheet": "Список функций",
-    "resources/mcp-bridge": "MCP Bridge"
+    "resources/mcp-bridge": "MCP Bridge",
+    "resources/cli": "CLI"
   },
   "ar": {
     "getting-started": "ابدأ",
@@ -367,6 +376,7 @@
     "resources/faq": "الأسئلة المتكررة",
     "resources/good-practices": "أفضل الممارسات",
     "resources/features-sheet": "ورقة الميزات",
-    "resources/mcp-bridge": "MCP Bridge"
+    "resources/mcp-bridge": "MCP Bridge",
+    "resources/cli": "CLI"
   }
 }

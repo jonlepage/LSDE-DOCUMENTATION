@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig, type DefaultTheme } from 'vitepress';
 import structureJson from './data/structure.json';
 import labels from './data/labels.json';
+import { LLM_ZIP, buildLlmZip, llmZipDevServer, type LlmSource } from './llm';
 
 type Labels = Record<string, Record<string, string>>;
 const L = labels as Labels;
@@ -51,6 +52,7 @@ export interface DocStructure {
 const structure = structureJson as unknown as DocStructure;
 const { product, langs, sections } = structure;
 const DOCS_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const llmSource: LlmSource = { structure, labels: L, docsDir: DOCS_DIR };
 
 /** Une page n'apparaît dans la sidebar que si son .md existe pour cette langue. */
 const pageExists = (lang: string, section: string, slug: string) =>
@@ -62,16 +64,16 @@ const base = process.env.DOCS_BASE ?? '/';
 // ─────────────────────────────────────────────────────── UI strings par langue
 
 const UI = {
-  fr: { search: 'Rechercher', menu: 'Menu', outline: 'Sur cette page', prev: 'Précédent', next: 'Suivant', lastUpdated: 'Dernière mise à jour', darkMode: 'Apparence', returnToTop: 'Retour en haut', lang: 'Langue', download: 'Télécharger', website: 'Site officiel' },
-  en: { search: 'Search', menu: 'Menu', outline: 'On this page', prev: 'Previous', next: 'Next', lastUpdated: 'Last updated', darkMode: 'Appearance', returnToTop: 'Back to top', lang: 'Language', download: 'Download', website: 'Website' },
-  es: { search: 'Buscar', menu: 'Menú', outline: 'En esta página', prev: 'Anterior', next: 'Siguiente', lastUpdated: 'Última actualización', darkMode: 'Apariencia', returnToTop: 'Volver arriba', lang: 'Idioma', download: 'Descargar', website: 'Sitio oficial' },
-  pl: { search: 'Szukaj', menu: 'Menu', outline: 'Na tej stronie', prev: 'Poprzednia', next: 'Następna', lastUpdated: 'Ostatnia aktualizacja', darkMode: 'Wygląd', returnToTop: 'Do góry', lang: 'Język', download: 'Pobierz', website: 'Strona' },
-  zh: { search: '搜索', menu: '菜单', outline: '本页目录', prev: '上一页', next: '下一页', lastUpdated: '最后更新', darkMode: '外观', returnToTop: '返回顶部', lang: '语言', download: '下载', website: '官网' },
-  ja: { search: '検索', menu: 'メニュー', outline: 'このページの内容', prev: '前へ', next: '次へ', lastUpdated: '最終更新', darkMode: '外観', returnToTop: 'トップへ戻る', lang: '言語', download: 'ダウンロード', website: '公式サイト' },
-  ko: { search: '검색', menu: '메뉴', outline: '이 페이지에서', prev: '이전', next: '다음', lastUpdated: '마지막 업데이트', darkMode: '테마', returnToTop: '맨 위로', lang: '언어', download: '다운로드', website: '공식 사이트' },
-  hi: { search: 'खोजें', menu: 'मेन्यू', outline: 'इस पृष्ठ पर', prev: 'पिछला', next: 'अगला', lastUpdated: 'अंतिम अद्यतन', darkMode: 'दिखावट', returnToTop: 'ऊपर जाएँ', lang: 'भाषा', download: 'डाउनलोड', website: 'वेबसाइट' },
-  ru: { search: 'Поиск', menu: 'Меню', outline: 'На этой странице', prev: 'Назад', next: 'Вперёд', lastUpdated: 'Обновлено', darkMode: 'Оформление', returnToTop: 'Наверх', lang: 'Язык', download: 'Скачать', website: 'Сайт' },
-  ar: { search: 'بحث', menu: 'القائمة', outline: 'في هذه الصفحة', prev: 'السابق', next: 'التالي', lastUpdated: 'آخر تحديث', darkMode: 'المظهر', returnToTop: 'العودة للأعلى', lang: 'اللغة', download: 'تحميل', website: 'الموقع' },
+  fr: { search: 'Rechercher', menu: 'Menu', outline: 'Sur cette page', prev: 'Précédent', next: 'Suivant', lastUpdated: 'Dernière mise à jour', darkMode: 'Apparence', returnToTop: 'Retour en haut', lang: 'Langue', llm: 'Télécharger pour LLM', website: 'Site officiel' },
+  en: { search: 'Search', menu: 'Menu', outline: 'On this page', prev: 'Previous', next: 'Next', lastUpdated: 'Last updated', darkMode: 'Appearance', returnToTop: 'Back to top', lang: 'Language', llm: 'Download for LLM', website: 'Website' },
+  es: { search: 'Buscar', menu: 'Menú', outline: 'En esta página', prev: 'Anterior', next: 'Siguiente', lastUpdated: 'Última actualización', darkMode: 'Apariencia', returnToTop: 'Volver arriba', lang: 'Idioma', llm: 'Descargar para LLM', website: 'Sitio oficial' },
+  pl: { search: 'Szukaj', menu: 'Menu', outline: 'Na tej stronie', prev: 'Poprzednia', next: 'Następna', lastUpdated: 'Ostatnia aktualizacja', darkMode: 'Wygląd', returnToTop: 'Do góry', lang: 'Język', llm: 'Pobierz dla LLM', website: 'Strona' },
+  zh: { search: '搜索', menu: '菜单', outline: '本页目录', prev: '上一页', next: '下一页', lastUpdated: '最后更新', darkMode: '外观', returnToTop: '返回顶部', lang: '语言', llm: 'LLM 文档下载', website: '官网' },
+  ja: { search: '検索', menu: 'メニュー', outline: 'このページの内容', prev: '前へ', next: '次へ', lastUpdated: '最終更新', darkMode: '外観', returnToTop: 'トップへ戻る', lang: '言語', llm: 'LLM用にダウンロード', website: '公式サイト' },
+  ko: { search: '검색', menu: '메뉴', outline: '이 페이지에서', prev: '이전', next: '다음', lastUpdated: '마지막 업데이트', darkMode: '테마', returnToTop: '맨 위로', lang: '언어', llm: 'LLM용 다운로드', website: '공식 사이트' },
+  hi: { search: 'खोजें', menu: 'मेन्यू', outline: 'इस पृष्ठ पर', prev: 'पिछला', next: 'अगला', lastUpdated: 'अंतिम अद्यतन', darkMode: 'दिखावट', returnToTop: 'ऊपर जाएँ', lang: 'भाषा', llm: 'LLM के लिए डाउनलोड', website: 'वेबसाइट' },
+  ru: { search: 'Поиск', menu: 'Меню', outline: 'На этой странице', prev: 'Назад', next: 'Вперёд', lastUpdated: 'Обновлено', darkMode: 'Оформление', returnToTop: 'Наверх', lang: 'Язык', llm: 'Скачать для LLM', website: 'Сайт' },
+  ar: { search: 'بحث', menu: 'القائمة', outline: 'في هذه الصفحة', prev: 'السابق', next: 'التالي', lastUpdated: 'آخر تحديث', darkMode: 'المظهر', returnToTop: 'العودة للأعلى', lang: 'اللغة', llm: 'تحميل لـ LLM', website: 'الموقع' },
 } as const;
 
 type LangCode = keyof typeof UI;
@@ -111,11 +113,10 @@ function nav(lang: string): DefaultTheme.NavItem[] {
   const dict = L[lang] ?? {};
   return [
     { text: dict['getting-started'] ?? 'Guide', link: `/${lang}/getting-started/introduction`, activeMatch: `/${lang}/getting-started/` },
-    { text: dict.features ?? 'Features', link: `/${lang}/features/translation`, activeMatch: `/${lang}/features/` },
-    { text: dict.engines ?? 'Engines', link: `/${lang}/engines/runtime`, activeMatch: `/${lang}/engines/` },
     { text: 'LSDEDE', link: product.links.engine },
     { text: t.website, link: siteLink(product.links.product, lang) },
-    { text: t.download, link: siteLink(product.links.download, lang) },
+    // VitePress n'ajoute `base` qu'aux liens de pages : un lien vers un fichier doit le porter.
+    { text: t.llm, link: `${base}${lang}/${LLM_ZIP}` },
   ];
 }
 
@@ -176,6 +177,14 @@ export default defineConfig({
   appearance: 'dark',
   /** sitemap.xml généré au build — à mettre à jour avec le vrai domaine. */
   sitemap: { hostname: product.siteUrl + '/' },
+
+  // Documentation pour LLM : un zip par langue, écrit au build, construit à la demande en dev.
+  vite: { plugins: [llmZipDevServer(llmSource)] },
+  buildEnd(site) {
+    for (const { code } of langs) {
+      fs.writeFileSync(path.join(site.outDir, code, LLM_ZIP), buildLlmZip(llmSource, code));
+    }
+  },
 
   title: `${product.name} Docs`,
   description: `Documentation officielle de ${product.name} (${product.shortName}) — édition, traduction et localisation de dialogues pour jeux et logiciels.`,

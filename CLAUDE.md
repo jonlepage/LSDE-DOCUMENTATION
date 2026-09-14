@@ -111,6 +111,13 @@ la mesure ne veut rien dire. Référence obtenue ainsi : 98 en performance sur m
 - **`markdown.config`** ajoute `v-pre` au code inline pour que `` `{{variable}}` `` s'affiche
   littéralement au lieu d'être compilé par Vue.
 - **`base`** vient de `DOCS_BASE`, injecté par le workflow GitHub Actions ; racine en dev.
+- **Le zip pour LLM** (`/<lang>/lsde-documentation.zip`, dernier bouton de la nav) n'est jamais
+  stocké : `buildEnd` l'écrit dans `dist`, et en dev un middleware Vite le construit à la demande.
+  Le lien porte `base` lui-même, car VitePress ne l'ajoute qu'aux liens de pages.
+- **`llm.ts` traduit le Markdown du site en Markdown portable** : `DocImage` → image en URL absolue
+  (les `icon` sont retirées), `YouTube` → lien, conteneurs `:::` → alertes GitHub, liens
+  `/<lang>/…` → chemins `.md` relatifs. Une nouvelle syntaxe propre au site doit y être ajoutée,
+  sinon elle part brute dans l'archive.
 
 ## Contrainte de design
 

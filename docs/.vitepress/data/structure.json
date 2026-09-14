@@ -294,6 +294,12 @@
           "legacyId": "mcp",
           "i18n": "lsde.doc.misc.mcp",
           "label": "MCP Bridge"
+        },
+        {
+          "slug": "cli",
+          "legacyId": "cli",
+          "i18n": "lsde.doc.misc.cli",
+          "label": "CLI"
         }
       ],
       "label": "Resources"

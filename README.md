@@ -23,6 +23,7 @@ npm run preview    # prévisualise le build
 | Sélecteur de langue racine | `docs/index.md` | Redirige vers la langue du navigateur. |
 | Thème | `docs/.vitepress/theme/` | `vars.css` = palette, `custom.css` = habillage, `components/` = Vue. |
 | Images | `docs/public/doc/lsde/` | Référencées en `/doc/lsde/<nom>.webp`. |
+| Documentation pour LLM | `docs/.vitepress/llm.ts` | Un zip par langue, écrit au build dans `dist/<lang>/lsde-documentation.zip` (bouton de la nav). |
 
 ## Ajouter une page
 
